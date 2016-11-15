@@ -6,9 +6,12 @@ public class Player : MonoBehaviour {
 
     const float DEAD_ZONE_HEIGHT = -5;
     public float maxSpeed = 1;
+    public float jumpForce = 15;
+
+    private bool isDucking = false;
+
     private Vector3 startPosition;
     private new Rigidbody2D rigidbody2D;
-    public float jumpForce = 15;
 
     void Start () {
         startPosition = transform.position;
@@ -38,12 +41,20 @@ public class Player : MonoBehaviour {
             rigidbody2D.velocity += Vector2.up * jumpForce;
 
         }
-
-        if (Input.GetAxis("Vertical") < 0)
+        // Duck if Needed
+        if (Input.GetAxis("Vertical") < 0 && !isDucking)
         {
-            transform.localScale *= .5f;
+            transform.localScale *= .7f;
+            isDucking = true;
         }
 
+        if (Input.GetAxis("Vertical") >= 0 && isDucking)
+        {
+            transform.localScale /= .7f;
+            isDucking = false;
+        }
+
+        // Flip to look in right direction 
         if (rigidbody2D.velocity.x > 0)
         {
             transform.rotation = new Quaternion(0, 0, 0, 0);
