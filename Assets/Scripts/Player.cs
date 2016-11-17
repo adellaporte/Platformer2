@@ -44,13 +44,17 @@ public class Player : MonoBehaviour {
         // Duck if Needed
         if (Input.GetAxis("Vertical") < 0 && !isDucking)
         {
-            transform.localScale *= .7f;
+            var s = transform.localScale;
+            s.y *= .7f;
+            transform.localScale = s;
             isDucking = true;
         }
 
         if (Input.GetAxis("Vertical") >= 0 && isDucking)
         {
-            transform.localScale /= .7f;
+            var s = transform.localScale;
+            s.y /= .7f;
+            transform.localScale = s;
             isDucking = false;
         }
 
