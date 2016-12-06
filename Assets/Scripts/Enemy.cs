@@ -26,4 +26,10 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    public void EnemyDie()
+    {
+        this.gameObject.SetActive(false);
+
+    }
 }
