@@ -4,7 +4,7 @@ using System;
 
 public class Player : MonoBehaviour {
 
-    const float DEAD_ZONE_HEIGHT = -5;
+    const float DEAD_ZONE_HEIGHT = -20;
     public float maxSpeed = 1;
     public float jumpForce = 15;
     public Weapon currentWeapon;
